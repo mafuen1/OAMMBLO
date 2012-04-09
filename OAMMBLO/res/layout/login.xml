@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/app_white"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" android:background="@color/app_dark_blue" android:paddingBottom="20sp" android:paddingTop="20sp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Login_text_ingresar_a" android:textSize="30sp" android:textColor="@color/app_white"/>
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name"
+            android:textSize="30sp" android:textColor="@color/app_white"/>
+
+        <EditText
+            android:id="@+id/Login_usuario"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:ems="10"
+            android:hint="@string/Login_usuario"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/Login_clave"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPassword" android:hint="@string/Login_clave">
+
+            <requestFocus />
+        </EditText>
+
+        <LinearLayout
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="right" android:background="@color/app_fondo2" android:paddingTop="5sp">
+
+            <Button
+                android:id="@+id/Login_entrar"
+                android:layout_width="80sp"
+                android:layout_height="wrap_content"
+                android:text="@string/Login_boton" android:onClick="onClick"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

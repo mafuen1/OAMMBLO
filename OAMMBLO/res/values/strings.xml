@@ -2,5 +2,10 @@
 <resources>
 
     <string name="app_name">OAMMBLO</string>
+    <string name="Login_usuario">Usuario</string>
+    <string name="Login_clave">Clave</string>
+    <string name="Login_boton">Entrar</string>
+    <string name="Login_text_ingresar_a">Ingresar a </string>
+    <string name="app_name2">Oammblo</string>
 
 </resources>
