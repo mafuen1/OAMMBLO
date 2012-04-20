@@ -6,7 +6,7 @@ import android.widget.Button;
 
 import com.fr4gus.android.oammblo.R;
 
-public class DashBoardActivity extends Activity {
+public class DashBoardActivity extends OammbloActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

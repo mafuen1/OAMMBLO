@@ -4,7 +4,10 @@
     android:versionCode="1"
     android:versionName="1.0.0" >
 
-    <uses-sdk android:minSdkVersion="7" />
+ 
+    <uses-permission android:name="android.permission.INTERNET"/>
+<uses-sdk android:targetSdkVersion="15" android:minSdkVersion="8"/>
+    
 
     <application
         android:icon="@drawable/ic_oammblo"
@@ -22,14 +25,25 @@
 		<activity
             android:name=".ui.LoginActivity"
             android:label="@string/app_name" 
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">        
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"> 
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:host="callback" android:scheme="x-oauth-twitter"/>
+            </intent-filter> 
         </activity>
         
 		<activity
             android:name=".ui.DashBoardActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">        
-        </activity>		
+        </activity>		        
+		<activity
+            android:name=".ui.TimelineActivity"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">        
+        </activity>			
         
     </application>
 

@@ -1,47 +1,66 @@
 package com.fr4gus.android.oammblo.ui;
 
-
+import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.R;
+import com.fr4gus.android.oammblo.data.TwitterService;
+import com.fr4gus.android.oammblo.util.LogIt;
+
 import android.view.Window;
-import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.EditText;
 
-public class LoginActivity extends Activity implements OnClickListener {
 
-	Bundle bundle;		
+public class LoginActivity extends OammbloActivity  {
+	Bundle bundle;
+	TwitterService twitterService;
 	
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {    	      
+    	super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        
         setContentView(R.layout.login);
+        twitterService = OammbloApp.getInstance().getTwitterService();
         
-        Button boton_entrar = (Button) findViewById (R.id.Login_entrar);
-        boton_entrar.setOnClickListener(this);
-        
+      
     }
 
-	@Override
-	public void onClick(View arg0) {
-		// TODO Auto-generated method stub
-		open();
-	}
-    
+    public void authenticate(View view) {
+        // Si no existe autenticacion previa
+        if (! twitterService.checkForSavedLogin(this) ) {
+            LogIt.d(this, "Solicitando autenticacion...");
+            twitterService.autoriza(this);
+        } else {
+            LogIt.d(this, "Datos de autenticacion previa, existente, iniciando aplicacion con normalidad");
+            startActivityByClass(DashBoardActivity.class);
+            finish();
+        }
+    }
 
-	
-    public void open()
-    {	
-		Intent intent = new Intent ();
-		intent.setClass (this, DashBoardActivity.class); 
-		bundle = new Bundle ();	
-		intent.putExtras(bundle);							
-		startActivity(intent);					    		
-    }	
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        Uri uri = intent.getData();
+        
+        if (uri != null) {
+            LogIt.d(this, "Posible authentication data received");
+            if (twitterService.authorize(this, uri) ) {
+                startActivityByClass(DashBoardActivity.class);
+                finish();
+                
+            } else {
+                // Algun problema para autenticarnos
+                toast(R.string.login_authentication_error);
+            }
+            
+        } else {
+            // En caso de que no exista el URi (por ejemplo que se 
+            // inicie la actividad por primera vez,
+            // forzar la autenticacion para verificar que exista
+            authenticate(null);
+        }
+    }
+    
 	
 }

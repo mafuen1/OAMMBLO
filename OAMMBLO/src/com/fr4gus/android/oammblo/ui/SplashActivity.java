@@ -1,5 +1,7 @@
 package com.fr4gus.android.oammblo.ui;
 
+import twitter4j.TwitterFactory;
+
 import com.fr4gus.android.oammblo.R;
 
 import android.content.Intent;
@@ -18,7 +20,7 @@ public class SplashActivity extends OammbloActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
-
+        
         LoginAsyncTask task = new LoginAsyncTask();
         task.execute();
     }
@@ -32,6 +34,7 @@ public class SplashActivity extends OammbloActivity {
             try 
             {
                 Thread.sleep(2000);
+                
             } 
             catch (InterruptedException e) 
             {

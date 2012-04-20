@@ -2,10 +2,9 @@
 <resources>
 
     <string name="app_name">OAMMBLO</string>
-    <string name="Login_usuario">Usuario</string>
-    <string name="Login_clave">Clave</string>
-    <string name="Login_boton">Entrar</string>
-    <string name="Login_text_ingresar_a">Ingresar a </string>
     <string name="app_name2">Oammblo</string>
+    <string name="Login_btn_autenticar">Autenticar con Twitter</string>
+    <string name="app_description">(Otra Aplicación Más de MicroBLOgging)</string>
+    <string name="login_authentication_error">Imposible autenticar con Twitter. Intente mas tarde.</string>
 
 </resources>
