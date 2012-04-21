@@ -31,6 +31,11 @@
             android:layout_height="wrap_content"
             android:text="@string/Login_btn_autenticar" android:onClick="authenticate" android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
 
+        <TextView
+            android:id="@+id/Login_txt_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 </LinearLayout>

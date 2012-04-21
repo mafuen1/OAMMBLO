@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class LoginActivity extends OammbloActivity  {
@@ -22,6 +24,8 @@ public class LoginActivity extends OammbloActivity  {
         setContentView(R.layout.login);
         twitterService = OammbloApp.getInstance().getTwitterService();
         
+        
+        
       
     }
 
@@ -29,8 +33,17 @@ public class LoginActivity extends OammbloActivity  {
         // Si no existe autenticacion previa
         if (! twitterService.checkForSavedLogin(this) ) {
             LogIt.d(this, "Solicitando autenticacion...");
-            twitterService.autoriza(this);
-        } else {
+            try
+            {
+            	twitterService.autoriza(this);
+            }
+            catch (Exception e){
+            	TextView  txt = (TextView)findViewById(R.id.Login_txt_error);
+            	txt.setText(e.getMessage());
+            }                       
+        } 
+        else 
+        {
             LogIt.d(this, "Datos de autenticacion previa, existente, iniciando aplicacion con normalidad");
             startActivityByClass(DashBoardActivity.class);
             finish();

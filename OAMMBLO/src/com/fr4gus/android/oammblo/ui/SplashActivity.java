@@ -27,14 +27,13 @@ public class SplashActivity extends OammbloActivity {
     
     
     class LoginAsyncTask extends AsyncTask<Void, Void, Void> {
-
+    	
         @Override
         protected Void doInBackground(Void... params) {
             
             try 
             {
-                Thread.sleep(2000);
-                
+                Thread.sleep(2000);                
             } 
             catch (InterruptedException e) 
             {
@@ -47,10 +46,6 @@ public class SplashActivity extends OammbloActivity {
         protected void onPostExecute(Void result) {
             startActivity(new Intent(SplashActivity.this, LoginActivity.class));
             finish();
-        }
-
-        
-    }    
-    
-
+        }        
+    }        
 }
