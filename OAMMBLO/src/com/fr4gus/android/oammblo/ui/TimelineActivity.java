@@ -16,6 +16,7 @@ import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.R;
 import com.fr4gus.android.oammblo.bo.Tweet;
 import com.fr4gus.android.oammblo.data.TwitterService;
+import com.fr4gus.android.oammblo.util.BackgroundTask;
 
 public class TimelineActivity extends OammbloActivity {
     private ListView mTimeline;
@@ -28,10 +29,32 @@ public class TimelineActivity extends OammbloActivity {
         mTimeline = (ListView) findViewById(R.id.listaTweets);
 
         TwitterService service = OammbloApp.getInstance().getTwitterService();
+        service.verificar(this);
         
-        mTimeline.setAdapter(new TweetAdapter(service.getTimeline(this)));
+      //  mTimeline.setAdapter(new TweetAdapter(service.getTimeline(this)));
         
-        
+
+        new BackgroundTask() {
+            List<Tweet> tweets;
+            
+            @Override
+            public void work() {
+                TwitterService service = OammbloApp.getInstance().getTwitterService();
+                tweets = service.getTimeline();
+            }
+            
+            @Override
+            public void error(Throwable error) {
+                toast("Unable to retrieve tweets");
+            }
+            
+            @Override
+            public void done() {
+                mTimeline.setAdapter(new TweetAdapter(tweets));
+                
+            }
+        };
+                
         
         
         
