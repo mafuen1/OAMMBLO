@@ -22,7 +22,7 @@ public interface TwitterService {
      * @return una lista de tweets del timeline del usuario
      * 
      */
-    public List<Tweet> getTimeline();
+    public List<Tweet> getTimeline(Context ctx);
 
     /**
      * Verifica la existencia de datos salvados relacionados con el login. 
@@ -32,8 +32,7 @@ public interface TwitterService {
     public boolean checkForSavedLogin(Context ctx);
 
     
-    public void autoriza(Context ctx) throws Exception;
-    
+
     /**
      * Al utilizar OAuth, el método invocara al browser para que el usuario se 
      * autentique con Twitter. Luego el usuario volvera a la aplicacion
@@ -41,7 +40,7 @@ public interface TwitterService {
      * poder recibir el token de accesso
      * @return
      */
-    public void requestOAuthAccessToken(Context ctx);
+    public void OAuthAuthorize(Context ctx);
     
-    public boolean authorize(Context context, Uri uriData);
+    public boolean RetrieveAccessToken(Context context, Uri uriData);
 }

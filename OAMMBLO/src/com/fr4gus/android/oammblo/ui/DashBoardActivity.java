@@ -1,8 +1,11 @@
 package com.fr4gus.android.oammblo.ui;
 
-import android.app.Activity;
+
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.View;
+
 
 import com.fr4gus.android.oammblo.R;
 
@@ -13,5 +16,15 @@ public class DashBoardActivity extends OammbloActivity {
         setContentView(R.layout.dashboard);
         
     }
+    
+    
+    public void openTimeLine (View view){    	    	 
+		Intent intent = new Intent ();
+		intent.setClass (this, TimelineActivity.class); 								
+		startActivity(intent);	    	
+    }
+    
+    
+    
     
 }

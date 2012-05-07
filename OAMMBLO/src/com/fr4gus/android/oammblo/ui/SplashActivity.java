@@ -1,9 +1,8 @@
 package com.fr4gus.android.oammblo.ui;
 
-import twitter4j.TwitterFactory;
+
 
 import com.fr4gus.android.oammblo.R;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;

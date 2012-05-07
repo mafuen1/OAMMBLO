@@ -12,9 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.R;
 import com.fr4gus.android.oammblo.bo.Tweet;
-import com.fr4gus.android.oammblo.data.DummyTwitterService;
 import com.fr4gus.android.oammblo.data.TwitterService;
 
 public class TimelineActivity extends OammbloActivity {
@@ -27,9 +27,14 @@ public class TimelineActivity extends OammbloActivity {
 
         mTimeline = (ListView) findViewById(R.id.listaTweets);
 
-        TwitterService service = new DummyTwitterService();        
+        TwitterService service = OammbloApp.getInstance().getTwitterService();
         
-        mTimeline.setAdapter(new TweetAdapter(service.getTimeline()));
+        mTimeline.setAdapter(new TweetAdapter(service.getTimeline(this)));
+        
+        
+        
+        
+        
 
     }
 

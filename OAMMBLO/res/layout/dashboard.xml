@@ -15,7 +15,7 @@
                 android:id="@+id/imageView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/twiteer" android:paddingBottom="20sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="10sp"/>
+                android:src="@drawable/twiteer" android:paddingBottom="20sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="10sp" android:onClick="openTimeLine"/>
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -28,7 +28,7 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="66dp"
-            android:background="@color/app_fondo2"
+            android:background="@color/app_fondo_H"
             android:gravity="right|center_vertical"
             android:orientation="horizontal"
             android:paddingRight="40sp" android:id="@+id/dashboard_TweetBar">

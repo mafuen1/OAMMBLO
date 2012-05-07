@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:id="@+id/timeline_TweetBar">
+        android:layout_height="wrap_content" android:id="@+id/timeline_TweetBar" android:padding="10dp">
 
         <ImageView
             android:id="@+id/imageView3"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/menciones80" />
+            android:src="@drawable/pluma80" />
 
     </RelativeLayout>
 

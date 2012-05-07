@@ -16,7 +16,8 @@ public class TwitterServiceFactory {
         TwitterService service = null;
         switch (provider) {
         case DUMMY:
-            return new DummyTwitterService();
+            //return new DummyTwitterService();
+        	return new Twitter4JService();
         case TWITTER4J:
             return new Twitter4JService();
         default:

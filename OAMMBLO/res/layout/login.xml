@@ -11,13 +11,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical" android:background="@color/app_dark_blue" android:paddingBottom="20sp" android:paddingTop="20sp">
+        android:orientation="vertical" android:background="@color/app_fondo_H" android:paddingBottom="20sp" android:paddingTop="20sp">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" android:textSize="30dp"/>
+            android:text="@string/app_name" android:textSize="30dp" android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textView2"
@@ -29,7 +29,7 @@
             android:id="@+id/Login_entrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Login_btn_autenticar" android:onClick="authenticate" android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
+            android:text="@string/Login_btn_autenticar" android:onClick="authenticate" android:layout_marginTop="10dp" android:layout_marginBottom="10dp" android:visibility="invisible"/>
 
         <TextView
             android:id="@+id/Login_txt_error"
