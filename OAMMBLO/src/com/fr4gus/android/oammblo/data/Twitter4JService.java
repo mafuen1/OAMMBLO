@@ -72,7 +72,7 @@ public class Twitter4JService  implements TwitterService{
         SharedPreferences prefs = ctx.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);
         String token = prefs.getString(STORE_TOKEN, null);
         String secret = prefs.getString(STORE_SECRET_TOKEN, null);
-        LogIt.d(this, "----checkForSavedLogin: " + token);
+        
         if (token != null && secret != null) {
             accessToken = new AccessToken(token, secret);
         }
@@ -128,15 +128,29 @@ public class Twitter4JService  implements TwitterService{
     }
     
     
+
+    public void postStatus (String status){
+    	try 
+    	{
+            twitter.updateStatus(status);           
+         } 
+    	catch (TwitterException e) 
+    	{
+    		LogIt.e(this, e, e.getMessage());
+        }
+    } 
+    
+    
+    
+    
     
     @Override
     public List<Tweet> getTimeline() {
         List<Tweet> tweets = new ArrayList<Tweet>();
 
-        try {
-        	     	
-            User user = twitter.verifyCredentials();
+        try {        	     	
             List<Status> statuses = twitter.getHomeTimeline(new Paging());
+            
             for(Status status : statuses) {
                 Tweet tweet = new Tweet(status.getCreatedAt().getTime(), status.getUser().getScreenName(), status.getText());
                 tweets.add(tweet);
@@ -153,12 +167,10 @@ public class Twitter4JService  implements TwitterService{
     	   		 
     	List<Tweet> timeline = new LinkedList<Tweet>();
 		Twitter twitter = new TwitterFactory().getInstance();		
-	
 		
-	    try {
-	        
+	    try {	        
 	        SharedPreferences prefs = context.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);	       
-	    	LogIt.d(this, "-------------->"+prefs.getString(STORE_TOKEN, null));	    	
+	    		    	
 	    	AccessToken accessToken = new AccessToken(prefs.getString(STORE_TOKEN, null), prefs.getString(STORE_SECRET_TOKEN, null));
 	    	twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 	    	twitter.setOAuthAccessToken(accessToken);
@@ -180,20 +192,15 @@ public class Twitter4JService  implements TwitterService{
     }
     
     
-    public void verificar (Context context)
+    public void verifyCredentials (Context context)
     {
-    	   		 
-    	List<Tweet> timeline = new LinkedList<Tweet>();
 		twitter = new TwitterFactory().getInstance();		
-	
 		
 	    SharedPreferences prefs = context.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);	       
 		LogIt.d(this, "-------------->"+prefs.getString(STORE_TOKEN, null));	    	
 		AccessToken accessToken = new AccessToken(prefs.getString(STORE_TOKEN, null), prefs.getString(STORE_SECRET_TOKEN, null));
 		twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		twitter.setOAuthAccessToken(accessToken);
-	  
-	    
     }
         
     

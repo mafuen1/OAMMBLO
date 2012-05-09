@@ -11,7 +11,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical" android:background="@color/app_fondo_H" android:paddingBottom="20sp" android:paddingTop="20sp">
+        android:orientation="vertical" android:background="@color/app_fondo" android:paddingBottom="20sp" android:paddingTop="20sp">
 
         <TextView
             android:id="@+id/textView1"

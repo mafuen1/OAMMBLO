@@ -44,7 +44,8 @@ public class LoginActivity extends OammbloActivity  {
         else 
         {
             LogIt.d(this, "Datos de autenticacion previa, existente, iniciando aplicacion con normalidad");
-            startActivityByClass(DashBoardActivity.class);
+          //  startActivityByClass(DashBoardActivity.class);
+            startActivityByClass(TimelineActivity.class);
             finish();
         }
         
@@ -60,7 +61,8 @@ public class LoginActivity extends OammbloActivity  {
         if (uri != null) {
             LogIt.d(this, "Posible authentication data received");
             if (twitterService.RetrieveAccessToken(this, uri) ) {
-                startActivityByClass(DashBoardActivity.class);
+             //   startActivityByClass(DashBoardActivity.class);
+            	startActivityByClass(TimelineActivity.class);
                 finish();
                 
             } else {

@@ -44,8 +44,12 @@
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen">        
         </activity>			
-        
-		<activity android:name=".TokenAccesoOAuth"></activity>
+		<activity
+            android:name=".ui.TweetActivity"
+            android:label="@string/app_name" 
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">        
+        </activity>		        
+		
         
     </application>
 

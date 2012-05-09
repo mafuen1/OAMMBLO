@@ -7,52 +7,85 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" android:id="@+id/timeline_TweetBar" android:padding="10dp">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/retweet80" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageView3"
-            android:src="@drawable/menciones80" />
+        android:layout_height="wrap_content" android:background="@color/app_fondo">
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageView2"
-            android:src="@drawable/lista80" />
+            android:src="@drawable/tweet" android:background="@color/app_white" android:onClick="openTweet"/>
 
-        <ImageView
-            android:id="@+id/imageView4"
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/pluma80" />
+            android:layout_marginLeft="22dp"
+            android:text="Mafuen1"
+            android:textSize="20dip" android:textColor="@color/app_white" android:textStyle="normal|bold"/>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="fill_parent"
+
+    <RelativeLayout
+        android:id="@+id/timeline_TweetBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:background="@color/app_fondo" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:paddingRight="5dp" android:background="@color/app_dark_blue">
 
-    <ListView
-        android:id="@+id/listaTweets"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-    </ListView>
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/retweet80" style="@style/BaseButton"/>
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                style="@style/BaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/lista80" />
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                style="@style/BaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menciones80" />
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                style="@style/BaseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/twiteer80" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:gravity="center" android:background="@color/app_dark_blue">
+
+        <ListView
+            android:id="@+id/listaTweets"
+            android:layout_width="300dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="0" android:background="@color/app_white" android:layout_marginTop="10dip" android:layout_marginBottom="10dip">
+        </ListView>
+
+    </RelativeLayout>
 
 </LinearLayout>

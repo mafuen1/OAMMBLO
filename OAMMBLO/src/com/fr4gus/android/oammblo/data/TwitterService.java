@@ -24,7 +24,8 @@ public interface TwitterService {
      */
     public List<Tweet> getTimeline(Context ctx);
     public List<Tweet> getTimeline();
-    public void verificar (Context context);
+    public void verifyCredentials (Context context);
+    public void postStatus (String status);
     /**
      * Verifica la existencia de datos salvados relacionados con el login. 
      * En caso de que exista devuelve verdadero, falso en caso contrario. Utilice este metodo para no tener que solicitar de nuevo un token de acceso.

@@ -11,24 +11,25 @@
             android:layout_height="wrap_content"
             android:gravity="center" >
 
-            <ImageView
-                android:id="@+id/imageView3"
+            <ImageButton
+                android:id="@+id/imageButton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/twiteer" android:paddingBottom="20sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="10sp" android:onClick="openTimeLine"/>
+                android:src="@drawable/twiteer" android:onClick="openTimeLine"/>
 
-            <ImageView
-                android:id="@+id/imageView4"
+            <ImageButton
+                android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/lista" android:paddingBottom="20sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="10sp"/>
+                android:src="@drawable/lista" />
+
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="66dp"
-            android:background="@color/app_fondo_H"
+            android:background="@color/app_fondo"
             android:gravity="right|center_vertical"
             android:orientation="horizontal"
             android:paddingRight="40sp" android:id="@+id/dashboard_TweetBar">
@@ -55,17 +56,18 @@
             android:layout_height="wrap_content"
             android:gravity="center" >
 
-            <ImageView
-                android:id="@+id/imageView1"
+            <ImageButton
+                android:id="@+id/imageButton3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/menciones" android:paddingBottom="10sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="20sp"/>
+                android:src="@drawable/menciones" />
 
-            <ImageView
-                android:id="@+id/imageView2"
+            <ImageButton
+                android:id="@+id/imageButton4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/retweet" android:paddingBottom="10sp" android:paddingLeft="10sp" android:paddingRight="10sp" android:paddingTop="20sp"/>
+                android:src="@drawable/retweet" />
+
         </LinearLayout>
 
 
