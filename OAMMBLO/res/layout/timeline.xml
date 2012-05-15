@@ -74,12 +74,12 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:gravity="center" android:background="@color/app_dark_blue">
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" android:gravity="center" android:background="@color/app_dark_blue">
 
         <ListView
             android:id="@+id/listaTweets"
-            android:layout_width="300dip"
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"

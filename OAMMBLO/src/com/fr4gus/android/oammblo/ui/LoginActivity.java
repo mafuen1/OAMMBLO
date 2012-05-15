@@ -4,7 +4,7 @@ package com.fr4gus.android.oammblo.ui;
 
 import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.R;
-import com.fr4gus.android.oammblo.data.TwitterService;
+import com.fr4gus.android.oammblo.data.Twitter4JService;
 import com.fr4gus.android.oammblo.util.LogIt;
 import android.view.Window;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 public class LoginActivity extends OammbloActivity  {
 	Bundle bundle;
-	TwitterService twitterService;
+	Twitter4JService twitterService;
 	
     public void onCreate(Bundle savedInstanceState) {    	      
     	super.onCreate(savedInstanceState);

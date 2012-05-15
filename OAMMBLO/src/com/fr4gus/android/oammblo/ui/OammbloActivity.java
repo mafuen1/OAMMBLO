@@ -20,7 +20,9 @@ public class OammbloActivity extends Activity {
         //En vez de definir esto en el xml con el tema Theme.NoTitleBar
         //Se puede hacer de manera programada. La ventaja es que solo se 
         //hace desde aqui en vez de ir a modificar el AndroidManifest.xml
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        
+        //Para tomar toda la pantalla.
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
     
     public void startActivityByClass(Class clazz) {

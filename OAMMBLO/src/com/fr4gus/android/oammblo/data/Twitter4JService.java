@@ -1,5 +1,6 @@
 package com.fr4gus.android.oammblo.data;
 
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +26,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 
@@ -33,19 +36,15 @@ import com.fr4gus.android.oammblo.bo.Tweet;
 import com.fr4gus.android.oammblo.util.LogIt;
 
 
-public class Twitter4JService  implements TwitterService{
+public class Twitter4JService   {
     public static final String STORE_KEY = "twitter-store";
-
     public static final String STORE_TOKEN = "token";
-
     public static final String STORE_SECRET_TOKEN = "secret-token";
 
     //Parametros obtenidos de Twitters Developers.
     public static final String CONSUMER_KEY = "A05ex8tdy7tSMLNUTQuFqA";
     public static final String CONSUMER_SECRET = "iQk2uQ4ZdmeQWbkGJPpvV3Gf51IXAKumJaea5xVqlWA";
-
     public static final String OAUTH_CALLBACK_SCHEME = "x-oauth-twitter";
-
     private static final String OAUTH_CALLBACK_URL = OAUTH_CALLBACK_SCHEME + "://callback";
 
     private static final String REQUEST_URL = "https://api.twitter.com/oauth/request_token";											  
@@ -67,7 +66,7 @@ public class Twitter4JService  implements TwitterService{
     String token;
     String tokenSecret;
 
-    @Override
+    
     public boolean checkForSavedLogin(Context ctx) {
         SharedPreferences prefs = ctx.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);
         String token = prefs.getString(STORE_TOKEN, null);
@@ -79,7 +78,7 @@ public class Twitter4JService  implements TwitterService{
         return accessToken != null;
     }
 
-    @Override
+    
     public void OAuthAuthorize (Context context) {
         try {
             consumer = new CommonsHttpOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
@@ -142,22 +141,37 @@ public class Twitter4JService  implements TwitterService{
     
     
     
-    
-    
-    @Override
     public List<Tweet> getTimeline() {
         List<Tweet> tweets = new ArrayList<Tweet>();
 
         try {        	     	
-            List<Status> statuses = twitter.getHomeTimeline(new Paging());
+
+        	List<Status> statuses = twitter.getUserTimeline();//twitter.getHomeTimeline(new Paging());
             
             for(Status status : statuses) {
-                Tweet tweet = new Tweet(status.getCreatedAt().getTime(), status.getUser().getScreenName(), status.getText());
+
+            	User user = status.getUser();            	
+            	ImageHelper image = new ImageHelper ();
+            	
+            	Bitmap bm = image.loadImage(user.getProfileImageURL().toString());
+            	
+            	/*ExternalStorage sd = new ExternalStorage ();
+            	
+            	if (sd.isSdDisponible() && sd.isSdAccesoEscritura()){
+            		sd.save_to_SD(bm, status.getUser().getScreenName());
+            	}
+            	
+            	*/
+            	Tweet tweet = new Tweet(status.getCreatedAt().getTime(), status.getUser().getScreenName(), status.getText(), bm );            	
+
+            	
+            	
+            	
                 tweets.add(tweet);
             }
             
         } catch (TwitterException e) {
-            LogIt.e(this, e, e.getMessage());
+            LogIt.e(this, e, e.getCause().toString() );
         }
         return tweets;
     }
@@ -202,7 +216,19 @@ public class Twitter4JService  implements TwitterService{
 		twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		twitter.setOAuthAccessToken(accessToken);
     }
-        
+        /*
+    void connectTwitter() {
+
+    	  twitter.setOAuthConsumer(OAuthConsumerKey, OAuthConsumerSecret);
+    	  AccessToken accessToken = loadAccessToken();
+    	  twitter.setOAuthAccessToken(accessToken);
+
+    	}
+    	*/
+    
+    
+
+
     
     
     /* Responsible for starting the Twitter authorization */

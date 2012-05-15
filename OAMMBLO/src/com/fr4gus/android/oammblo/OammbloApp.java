@@ -1,9 +1,6 @@
 package com.fr4gus.android.oammblo;
 
-import com.fr4gus.android.oammblo.data.TwitterService;
-import com.fr4gus.android.oammblo.data.TwitterServiceFactory;
-import com.fr4gus.android.oammblo.data.TwitterServiceFactory.Provider;
-
+import com.fr4gus.android.oammblo.data.Twitter4JService;
 import android.app.Application;
 
 /**
@@ -12,16 +9,18 @@ import android.app.Application;
  *
  */
 public class OammbloApp extends Application {
-    TwitterService twitterService;
-
-    static OammbloApp self;
+    
+	Twitter4JService twitterService;    
+    static int noOfInstances;
+    static OammbloApp _instance=null;
 
     @Override
     public void onCreate() {
         // TODO Auto-generated method stub
-        super.onCreate();
-        twitterService = TwitterServiceFactory.getService(Provider.TWITTER4J);
-        self = this;
+        super.onCreate();  
+        noOfInstances++;
+        twitterService = new Twitter4JService();
+        _instance = this;
     }
 
     @Override
@@ -36,11 +35,16 @@ public class OammbloApp extends Application {
         super.onTerminate();
     }
 
-    public TwitterService getTwitterService() {
+    public Twitter4JService getTwitterService() {
         return twitterService;
     }
 
-    public static OammbloApp getInstance() {
-        return self;
+
+    public static synchronized OammbloApp getInstance() {
+        if (_instance == null) {
+                _instance = new OammbloApp();
+        }
+        return _instance;
     }
+    
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.R;
 import com.fr4gus.android.oammblo.bo.Tweet;
-import com.fr4gus.android.oammblo.data.TwitterService;
+import com.fr4gus.android.oammblo.data.Twitter4JService;
 import com.fr4gus.android.oammblo.util.BackgroundTask;
 
 public class TimelineActivity extends OammbloActivity {
@@ -44,7 +46,7 @@ public class TimelineActivity extends OammbloActivity {
             
             @Override
             public void work() {
-                TwitterService service = OammbloApp.getInstance().getTwitterService();
+                Twitter4JService service = OammbloApp.getInstance().getTwitterService();
                 service.verifyCredentials(context);
                 tweets = service.getTimeline();                
             }
@@ -89,7 +91,7 @@ public class TimelineActivity extends OammbloActivity {
 		    		
 		            @Override
 		            public void work() {
-		                TwitterService service = OammbloApp.getInstance().getTwitterService();
+		                Twitter4JService service = OammbloApp.getInstance().getTwitterService();
 		                service.verifyCredentials(context);
 		                service.postStatus(mensaje);               
 		            }
@@ -102,10 +104,7 @@ public class TimelineActivity extends OammbloActivity {
 		            @Override
 		            public void done() {
 		            	toast("enviando tweet..."); 
-		            	
-		                TwitterService service = OammbloApp.getInstance().getTwitterService();
-		                service.verifyCredentials(context);
-		                tweets = service.getTimeline();  		            	
+	            	
 		            }
 		        };  				
 			}
@@ -147,6 +146,7 @@ public class TimelineActivity extends OammbloActivity {
                 holder.message = (TextView) convertView.findViewById(R.id.tweet_mensaje);
                 holder.author = (TextView) convertView.findViewById(R.id.tweet_usuario);
                 holder.timestamp = (TextView) convertView.findViewById(R.id.tweet_fecha);
+                holder.image  = (ImageView) convertView.findViewById(R.id.tweet_imageUser);
                 
                 convertView.setTag(holder);
             } else {
@@ -157,10 +157,11 @@ public class TimelineActivity extends OammbloActivity {
             Tweet tweet = tweets.get(position);
             
             holder.message.setText( tweet.getMessage());
-            holder.author.setText(tweet.getAuthor());
-                        
-            
+            holder.author.setText(tweet.getAuthor());                                   
             holder.timestamp.setText(android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss",tweet.getTimestamp()));
+            holder.image.setImageBitmap(tweet.getBmImg());
+            
+            
             return convertView;
         }
 
@@ -169,7 +170,8 @@ public class TimelineActivity extends OammbloActivity {
     private class TweetViewHolder {
         TextView message;
         TextView author;
-        TextView timestamp;        
+        TextView timestamp;       
+        ImageView image;
     }
 
 }

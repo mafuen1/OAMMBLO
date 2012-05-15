@@ -1,15 +1,35 @@
 package com.fr4gus.android.oammblo.bo;
 
+import android.graphics.Bitmap;
+
 public class Tweet {
 
-    private long timestamp;
+    public Tweet(long timestamp, String author, String message, Bitmap bmImg) {
+		super();
+		this.timestamp = timestamp;
+		this.author = author;
+		this.message = message;
+		this.bmImg = bmImg;
+	}
+
+	private long timestamp;
 
     private String author;
 
     private String message;
+    
+    private Bitmap bmImg;
 
     
-    public Tweet(long timestamp, String author, String message){
+    public Bitmap getBmImg() {
+		return bmImg;
+	}
+
+	public void setBmImg(Bitmap bmImg) {
+		this.bmImg = bmImg;
+	}
+
+	public Tweet(long timestamp, String author, String message){
         this.timestamp = timestamp;
         this.author = author;
         this.message = message;

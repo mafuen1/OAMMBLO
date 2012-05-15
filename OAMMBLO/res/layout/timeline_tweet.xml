@@ -4,7 +4,7 @@
     android:layout_height="fill_parent"
     android:background="@color/app_white"
     android:orientation="vertical" >
-
+
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -16,30 +16,34 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:text="36 minutos" android:textSize="11dip"/>
-
+            android:text="36 minutos"
+            android:textSize="11dip" />
+
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/tweet_imageUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:src="@drawable/bird" />
-
+
         <TextView
             android:id="@+id/tweet_usuario"
+            style="@style/BaseTextViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageView1"
-            android:text="Noticias Repretel" style="@style/BaseTextViewTitle"/>
-
+            android:layout_toRightOf="@+id/tweet_imageUser"
+            android:text="Noticias Repretel" />
+
         <TextView
             android:id="@+id/tweet_mensaje"
+            style="@style/BaseTextViewListTweets"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tweet_fecha"
-            android:layout_toRightOf="@+id/imageView1"
-            android:text="Tribunal Penal de Pococí dictará sentencia contra 5 hombres, esto por el delito de homicidio calificado en perjuicio de Santos Medina Pérez" style="@style/BaseTextViewListTweets"/>
+            android:layout_alignLeft="@+id/tweet_usuario"
+            android:layout_below="@+id/tweet_usuario"
+            android:text="Tribunal Penal de Pococí dictará sentencia contra 5 hombres, esto por el delito de homicidio calificado en perjuicio de Santos Medina Pérez" />
 
     </RelativeLayout>
 
