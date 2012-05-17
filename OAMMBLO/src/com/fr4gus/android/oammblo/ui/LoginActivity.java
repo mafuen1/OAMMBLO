@@ -24,7 +24,6 @@ public class LoginActivity extends OammbloActivity  {
         setContentView(R.layout.login);
         
         twitterService = OammbloApp.getInstance().getTwitterService();
-
     }
 
     public void authenticate(View view) {
@@ -44,7 +43,8 @@ public class LoginActivity extends OammbloActivity  {
         else 
         {
             LogIt.d(this, "Datos de autenticacion previa, existente, iniciando aplicacion con normalidad");
-          //  startActivityByClass(DashBoardActivity.class);
+            //startActivityByClass(DashBoardActivity.class);
+            twitterService.connectTwitter(this);
             startActivityByClass(TimelineActivity.class);
             finish();
         }

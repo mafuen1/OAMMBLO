@@ -22,7 +22,7 @@ public class OammbloActivity extends Activity {
         //hace desde aqui en vez de ir a modificar el AndroidManifest.xml
         
         //Para tomar toda la pantalla.
-        //requestWindowFeature(Window.FEATURE_NO_TITLE);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
     }
     
     public void startActivityByClass(Class clazz) {

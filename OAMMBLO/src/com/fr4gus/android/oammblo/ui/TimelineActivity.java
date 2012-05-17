@@ -1,12 +1,9 @@
 package com.fr4gus.android.oammblo.ui;
 
-import java.util.Date;
-import java.util.List;
 
+import java.util.List;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,7 +44,7 @@ public class TimelineActivity extends OammbloActivity {
             @Override
             public void work() {
                 Twitter4JService service = OammbloApp.getInstance().getTwitterService();
-                service.verifyCredentials(context);
+               // service.connectTwitter(context);
                 tweets = service.getTimeline();                
             }
             
@@ -92,7 +89,7 @@ public class TimelineActivity extends OammbloActivity {
 		            @Override
 		            public void work() {
 		                Twitter4JService service = OammbloApp.getInstance().getTwitterService();
-		                service.verifyCredentials(context);
+		                //service.verifyCredentials(context);
 		                service.postStatus(mensaje);               
 		            }
 		            

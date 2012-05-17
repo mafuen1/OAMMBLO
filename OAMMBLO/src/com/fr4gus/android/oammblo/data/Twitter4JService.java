@@ -56,7 +56,7 @@ public class Twitter4JService   {
     // Current user keys
     private static AccessToken accessToken;
 
-    Twitter twitter;
+    static Twitter twitter;
     
     // Manuel Fuentes
     private OAuthConsumer consumer;
@@ -66,6 +66,12 @@ public class Twitter4JService   {
     String token;
     String tokenSecret;
 
+    
+    public Twitter4JService ()
+    {
+    	twitter = new TwitterFactory().getInstance();	
+    }
+    
     
     public boolean checkForSavedLogin(Context ctx) {
         SharedPreferences prefs = ctx.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);
@@ -146,7 +152,7 @@ public class Twitter4JService   {
 
         try {        	     	
 
-        	List<Status> statuses = twitter.getUserTimeline();//twitter.getHomeTimeline(new Paging());
+        	List<Status> statuses = twitter.getHomeTimeline();//twitter.getHomeTimeline(new Paging());
             
             for(Status status : statuses) {
 
@@ -206,28 +212,14 @@ public class Twitter4JService   {
     }
     
     
-    public void verifyCredentials (Context context)
+    public void connectTwitter (Context context)
     {
-		twitter = new TwitterFactory().getInstance();		
-		
 	    SharedPreferences prefs = context.getSharedPreferences(STORE_KEY, Context.MODE_PRIVATE);	       
 		LogIt.d(this, "-------------->"+prefs.getString(STORE_TOKEN, null));	    	
 		AccessToken accessToken = new AccessToken(prefs.getString(STORE_TOKEN, null), prefs.getString(STORE_SECRET_TOKEN, null));
 		twitter.setOAuthConsumer(CONSUMER_KEY, CONSUMER_SECRET);
 		twitter.setOAuthAccessToken(accessToken);
     }
-        /*
-    void connectTwitter() {
-
-    	  twitter.setOAuthConsumer(OAuthConsumerKey, OAuthConsumerSecret);
-    	  AccessToken accessToken = loadAccessToken();
-    	  twitter.setOAuthAccessToken(accessToken);
-
-    	}
-    	*/
-    
-    
-
 
     
     
