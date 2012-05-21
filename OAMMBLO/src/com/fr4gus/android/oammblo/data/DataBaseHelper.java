@@ -4,8 +4,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Locale;
-
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -16,23 +15,9 @@ import android.util.Log;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 	
-	private static final String DATABASE_PATH = "/data/data/ice.go.cr/databases/";
-	private static final String DATABASE_NAME = "MQReasonCodes.db";
-	//private static final int SCHEME_VERSION = 1;
-	
-	//Nombres de las columnas.
-	static final String ID = "_id";
-	static final String REASONCODE = "reasonCode";
-	static final String DESCRIPTION = "description";
-	static final String EXPLANATION = "explanation";
-	static final String COMPLETION_CODE = "completionCode";
-	static final String PROGRAMMER_RESPONSE = "programmerResponse";
-	
-	
-	public static final String TABLE_NAME = "codes";
-	
-
-	
+	private static final String DATABASE_PATH = "/data/data/com.fr4gus.android.oammblo/databases/";
+	private static final String DATABASE_NAME = "Oamblo.db";
+	private static final int SCHEME_VERSION = 1;
 	public SQLiteDatabase dbSQLite;
 	private final Context myContext;
 
@@ -68,7 +53,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 			} 
 			catch (IOException e) 
 			{
-				throw new Error("Error copying database"); 
+				throw new Error("Error copiando base de datos"); 
 			}              
           } 		
 	}
@@ -126,7 +111,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 	
 	public void openDataBase ()throws  SQLException{
 		String myPath = DATABASE_PATH + DATABASE_NAME;
-		dbSQLite = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+		dbSQLite = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 	}
 	
 	public synchronized void close()
@@ -139,24 +124,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 		super.close();
 	}
 	
-	
-	public Cursor getCursor (){
-		String [] asColumnstoReturn  = new String []{ID, REASONCODE, DESCRIPTION, EXPLANATION, PROGRAMMER_RESPONSE};
-				
-		//Cursor c = dbSQLite.rawQuery("SELECT REASONCODE,DESCRIPTION FROM CODES ORDER BY REASONCODE ASC",null);
-		Cursor c = dbSQLite.query (TABLE_NAME, asColumnstoReturn, null, null, null, null, "_id ASC");
+
+	public Cursor getCursor (String table, String [] columns, String order){				
+		Cursor c = dbSQLite.query (table, columns, null, null, null, null, order);		
 		return c;
 	}
 
-	public Cursor getCursor (String reason_code){		
-		String[] args={reason_code};				
-		Cursor c = dbSQLite.rawQuery("SELECT _ID, REASONCODE, DESCRIPTION, EXPLANATION, PROGRAMMERRESPONSE FROM CODES WHERE REASONCODE=?",args);
-		return c;
-	}	
-	
-	public String getName (Cursor c){
-		return c.getString(1);
+		
+	public long  insert (String table, String nullColumnHack, ContentValues values){		
+		return dbSQLite.insert(table, nullColumnHack, values);			
 	}
 	
+	public int  update (String table, ContentValues values, String whereClause){		
+		return dbSQLite.update(table, values, whereClause,null) ;			
+	}
+	
+	
+	public int  delete (String table, String whereClause){		
+		return dbSQLite.delete(table, whereClause, null) ;			
+	}
+	
+	
+	public void insertTweet (TableTweet tweet){
+		ContentValues nuevoRegistro = new ContentValues();
+			
+		nuevoRegistro.put(TableTweet.USER_ID, tweet.getUser_id());
+		nuevoRegistro.put(TableTweet.TEXT, tweet.getText());
+		nuevoRegistro.put(TableTweet.DATETIME, tweet.getDatetime());
+
+		this.insert(TableTweet.TABLE_NAME, null, nuevoRegistro);
+				
+	}	
+
 	
 }

@@ -4,6 +4,7 @@ package com.fr4gus.android.oammblo.ui;
 import java.util.List;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,9 +85,8 @@ public class TimelineActivity extends OammbloActivity {
 		    	final String mensaje = editmensaje.getText().toString();
 
 		    	new BackgroundTask() {
-		    		List<Tweet> tweets;
-		    		
-		            @Override
+
+		    		@Override
 		            public void work() {
 		                Twitter4JService service = OammbloApp.getInstance().getTwitterService();
 		                //service.verifyCredentials(context);
@@ -147,8 +147,7 @@ public class TimelineActivity extends OammbloActivity {
                 
                 convertView.setTag(holder);
             } else {
-                holder = (TweetViewHolder) convertView.getTag();
-                                
+                holder = (TweetViewHolder) convertView.getTag();                               
             }
             
             Tweet tweet = tweets.get(position);
@@ -156,7 +155,12 @@ public class TimelineActivity extends OammbloActivity {
             holder.message.setText( tweet.getMessage());
             holder.author.setText(tweet.getAuthor());                                   
             holder.timestamp.setText(android.text.format.DateFormat.format("yyyy-MM-dd hh:mm:ss",tweet.getTimestamp()));
-            holder.image.setImageBitmap(tweet.getBmImg());
+            
+            Bitmap bm = tweet.getBmImg();
+            if (bm==null)
+            	holder.image.setImageResource(R.drawable.icon48x48);
+            else
+            	holder.image.setImageBitmap(bm);
             
             
             return convertView;

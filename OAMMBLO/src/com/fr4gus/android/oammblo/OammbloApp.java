@@ -1,5 +1,6 @@
 package com.fr4gus.android.oammblo;
 
+import com.fr4gus.android.oammblo.data.DataBaseHelper;
 import com.fr4gus.android.oammblo.data.Twitter4JService;
 import android.app.Application;
 
@@ -10,7 +11,8 @@ import android.app.Application;
  */
 public class OammbloApp extends Application {
     
-	Twitter4JService twitterService;    
+	Twitter4JService twitterService;
+	DataBaseHelper database;	
     static int noOfInstances;
     static OammbloApp _instance=null;
 
@@ -20,6 +22,10 @@ public class OammbloApp extends Application {
         super.onCreate();  
         noOfInstances++;
         twitterService = new Twitter4JService();
+        database = new DataBaseHelper (this);	        
+        database.createDatabase();        
+        database.openDataBase();      
+        
         _instance = this;
     }
 
@@ -39,6 +45,10 @@ public class OammbloApp extends Application {
         return twitterService;
     }
 
+    public DataBaseHelper getDataBase() {
+        return database;
+    }    
+    
 
     public static synchronized OammbloApp getInstance() {
         if (_instance == null) {

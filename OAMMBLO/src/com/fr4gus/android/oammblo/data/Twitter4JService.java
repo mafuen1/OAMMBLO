@@ -31,6 +31,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 
+import com.fr4gus.android.oammblo.OammbloApp;
 import com.fr4gus.android.oammblo.bo.Tweet;
 
 import com.fr4gus.android.oammblo.util.LogIt;
@@ -150,6 +151,8 @@ public class Twitter4JService   {
     public List<Tweet> getTimeline() {
         List<Tweet> tweets = new ArrayList<Tweet>();
 
+        DataBaseHelper database = OammbloApp.getInstance().getDataBase();
+
         try {        	     	
 
         	List<Status> statuses = twitter.getHomeTimeline();//twitter.getHomeTimeline(new Paging());
@@ -161,16 +164,21 @@ public class Twitter4JService   {
             	
             	Bitmap bm = image.loadImage(user.getProfileImageURL().toString());
             	
-            	/*ExternalStorage sd = new ExternalStorage ();
             	
+            	ExternalStorage sd = new ExternalStorage ();            	
             	if (sd.isSdDisponible() && sd.isSdAccesoEscritura()){
             		sd.save_to_SD(bm, status.getUser().getScreenName());
             	}
             	
-            	*/
-            	Tweet tweet = new Tweet(status.getCreatedAt().getTime(), status.getUser().getScreenName(), status.getText(), bm );            	
-
             	
+            	Tweet tweet = new Tweet(status.getCreatedAt().getTime(), status.getUser().getScreenName(), status.getText(), bm );            	
+            	
+            	
+            	TableTweet tabletweet = new TableTweet ();
+            	tabletweet.setUser_id(status.getUser().getScreenName());
+            	tabletweet.setText(status.getText());
+            	tabletweet.setDatetime(status.getCreatedAt().getTime());
+            	database.insertTweet(tabletweet);
             	
             	
                 tweets.add(tweet);

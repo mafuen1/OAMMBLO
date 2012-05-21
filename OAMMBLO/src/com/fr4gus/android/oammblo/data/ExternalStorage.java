@@ -6,6 +6,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+import com.fr4gus.android.oammblo.util.LogIt;
+
 import android.graphics.Bitmap;
 import android.os.Environment;
 
@@ -55,30 +57,36 @@ public class ExternalStorage {
 	
 	public void save_to_SD (Bitmap bm, String image_name){
 
-		String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-		String meteoDirectory_path = extStorageDirectory + "/OAMBLO";
-
+		//String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+		//String meteoDirectory_path = extStorageDirectory + "/OAMBLO";
+		//File file = new File(meteoDirectory_path, "/"+ image_name);
+		//String fullpath = file.getAbsolutePath();
+		
+		
 		OutputStream outStream = null;
-		File file = new File(meteoDirectory_path, "/"+ image_name);
+		File root = Environment.getExternalStorageDirectory();
+         // String ruta = "/mnt/sdcard/external_sd/Images/";
+          
+         // File root = Environment.getDataDirectory();
+         File folder = new File(root,"OAMBLO");;
+         File file =  new File(folder,image_name);		
+		
+       //Si no existe, creamos la carpeta
+         if(!folder.exists())
+             folder.mkdirs();
+         
+         
 		try {
 			outStream = new FileOutputStream(file);
 			bm.compress(Bitmap.CompressFormat.PNG, 100, outStream);
 			outStream.flush();
 			outStream.close();
-
-
-			  //Log.i("Hub", "OK, Image Saved to SD");
-			  //Log.i("Hub", "height = "+ bm.getHeight() + ", width = " + bm.getWidth());
-
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-			//Log.i("Hub", "FileNotFoundException: "+ e.toString());
-
 		} catch (IOException e) {
 			e.printStackTrace();
-			// Log.i("Hub", "IOException: "+ e.toString());
-		}
-	  	 
+		}	  	 
 	}
 
 
